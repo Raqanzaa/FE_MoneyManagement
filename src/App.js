@@ -1,21 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
+  // The full URL to your Django backend's Google login endpoint
+  const googleLoginUrl = 'http://localhost:8000/accounts/google/login/?process=login';
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <h1>Money Manager</h1>
+        <p>Please log in to continue.</p>
+        <a href={googleLoginUrl} className="login-button">
+          Login with Google
         </a>
       </header>
     </div>
