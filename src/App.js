@@ -1,10 +1,14 @@
+// src/App.js
+
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginSuccess from './LoginSuccess'; // Import the new component
+import Dashboard from './Dashboard'; // Import the new component
 import './App.css';
 
-function App() {
-  // The full URL to your Django backend's Google login endpoint
+// A simple component for the initial login page
+const LoginPage = () => {
   const googleLoginUrl = 'http://localhost:8000/accounts/google/login/?process=login';
-
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +19,18 @@ function App() {
         </a>
       </header>
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login/success" element={<LoginSuccess />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
