@@ -1,8 +1,9 @@
 // src/Dashboard.js
 
 import React, { useState, useEffect, useCallback } from "react"; // Import useCallback
-import apiClient from "./apiClient"; // Import our new API client
-import TransactionForm from "./TransactionForm"; // Import our new API client
+import apiClient from "./apiClient";
+import TransactionForm from "./TransactionForm";
+import SpendingChart from "./SpendingChart";
 
 const Dashboard = () => {
     const [transactions, setTransactions] = useState([]);
@@ -52,12 +53,13 @@ const Dashboard = () => {
         <div style={{ padding: "20px" }}>
             <h1>Dashboard</h1>
             <TransactionForm onTransactionCreated={handleCreateTransaction} />
+            <SpendingChart transactions={transactions} />
             <h2>Your Transactions</h2>
             {transactions.length > 0 ? (
                 <ul>
                     {transactions.map((t) => (
                         <li key={t.id}>
-                            {t.date}: {t.description} - ${t.amount}
+                            {t.date}: {t.description} ({t.category || 'Uncategorized'}) - ${t.amount}
                         </li>
                     ))}
                 </ul>
